@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="shortcut icon" href="img/poizy_image.png" type="image/x-icon">
+    <title>Front Page of Practical File</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+</head>
+
+<body>
+    <main class="main container-fluid">
+        <section class="fpage border text-center mx-auto py-5 border-4 border-dark " id="fpage">
+            <div class="container">
+                <img class="img-fluid mx-auto my-2 d-block border-0" src="http://www.gliagra.ac.in/images/header.jpg"
+                    alt="college-name">
+                <img class="rounded mx-auto my-5 d-block shadow-lg" style="width:80%;"
+                    src="http://www.gliagra.ac.in/images/banner1.jpg" alt="college-image">
+            </div>
+            <h1 class="text-decoration-underline ">PRACTICAL FILE</h1>
+            <h1 class="sub-name m-4" style="color:rgb(31, 68, 117);" id="subject-name">Subject Name</h1>
+            <div class="info container m-5 text-start">
+                <p class="fw-bold fs-4 d-inline">BRANCH &emsp;: </p>
+                <p class="branch-name fw-bold fs-4 text-primary d-inline" id="branch-name">Branch Name</p><br>
+                <p class="fw-bold fs-4 d-inline">SEMESTER &nbsp;: </p>
+                <p class="semester-name fw-bold fs-4 text-primary d-inline" id="semester-name">Semester Name</p><br>
+                <p class="fw-bold fs-4 d-inline">SESSION &emsp;: </p>
+                <p class="session-name fw-bold fs-4 text-primary d-inline" id="session-name">Session Name</p><br>
+            </div>
+            <div class="container row text-start mx-3 my-5">
+                <div class="col">
+                    <p class="fs-3 fw-bold">
+                        SUBMITTED BY :
+                    </p>
+                    <p class="student-name fs-1 fw-bold text-primary" id="student-name">
+                        Student Name
+                    </p>
+
+                </div>
+                <div class="col">
+                    <p class="fs-3 fw-bold">
+                        SUBMITTED TO :
+                    </p>
+                    <p class="teacher-name fs-1 fw-bold text-primary" id="teacher-name">
+                        Teacher's Name
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="text-center">
+        <button class="btn download-btn btn-primary fw-bold border-0 p-3 m-2  mx-5"
+            style="color:rgb(255, 255, 255) ;">DOWNLOAD YOUR FRONT PAGE</button>
+        </div>
+    </main>
+
+</body>
+<script>
+    $(document).ready(function () {
+        const fpage = document.getElementById("fpage");
+        const params = new URLSearchParams(document.location.search);
+        const studentname = params.get("student-name");
+        const branchname = params.get("branch-name");
+        const semestername = params.get("semester-name");
+        const subjectname = params.get("subject-name");
+        const teachername = params.get("teacher-name");
+        const sessionname = params.get("session-name");
+        if (studentname && sessionname && branchname && semestername && subjectname && teachername) {
+            document.getElementById("student-name").innerHTML = studentname;
+            document.getElementById("branch-name").innerHTML = branchname;
+            document.getElementById("semester-name").innerHTML = semestername;
+            document.getElementById("teacher-name").innerHTML = teachername;
+            document.getElementById("subject-name").innerHTML = subjectname;
+            document.getElementById("session-name").innerHTML = sessionname;
+        } else {
+            window.location.replace("./index.html");
+        }
+        $(".download-btn").click(function () {
+            fpage.style.width="100%"
+            window.print("fpage");
+        });
+        
+        window.onafterprint(function () {
+            window.location.replace("./index.html");
+        });
+
+    });
+
+</script>
+<style>
+    .fpage {
+        width: 210mm; 
+        height: 120%;
+    }
+    h1 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+</style>
+
+</html>
